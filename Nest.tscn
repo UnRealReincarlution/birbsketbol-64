@@ -1,13 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://nest_front.png" type="Texture" id=1]
 [ext_resource path="res://nest.png" type="Texture" id=2]
+[ext_resource path="res://Nest.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 64 )
 
-[node name="Nest" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128, 10 )
+
+[node name="Nest" type="Node2D" groups=[
+"goal",
+]]
 position = Vector2( 160, 420 )
+script = ExtResource( 3 )
 
 [node name="Sprite_Back" type="Sprite" parent="."]
 z_index = -1
@@ -22,4 +29,11 @@ position = Vector2( 104, 36 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ring"]
 position = Vector2( 8, -8 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
+
+[node name="Goal_Area" type="Area2D" parent="."]
+position = Vector2( -32, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal_Area"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Goal_Area" to="." method="_on_Goal_Area_body_entered"]

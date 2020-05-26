@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://birb_house.png" type="Texture" id=1]
 [ext_resource path="res://birb_bol.png" type="Texture" id=2]
 [ext_resource path="res://Nest.tscn" type="PackedScene" id=3]
-[ext_resource path="res://birb_player_1.png" type="Texture" id=4]
-[ext_resource path="res://Player.gd" type="Script" id=5]
+[ext_resource path="res://Birb_Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://birb_player_2.png" type="Texture" id=5]
+[ext_resource path="res://GameManager.gd" type="Script" id=6]
 
 [sub_resource type="PhysicsMaterial" id=3]
 bounce = 0.9
@@ -22,7 +23,9 @@ z_index = -5
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Birb_Ball" type="RigidBody2D" parent="."]
+[node name="Birb_Ball" type="RigidBody2D" parent="." groups=[
+"ball",
+]]
 position = Vector2( 807.875, 679.862 )
 physics_material_override = SubResource( 3 )
 __meta__ = {
@@ -36,20 +39,15 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Birb_Ball"]
 shape = SubResource( 1 )
 
-[node name="Birb_Player_1" type="RigidBody2D" parent="."]
-position = Vector2( 304, 920 )
-physics_material_override = SubResource( 3 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Birb_Player_1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 320, 920 )
 
-[node name="Sprite" type="Sprite" parent="Birb_Player_1"]
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 4 )
+[node name="Birb_Player_2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1280, 920 )
+control = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Birb_Player_1"]
-shape = SubResource( 1 )
+[node name="Sprite" parent="Birb_Player_2" index="0"]
+texture = ExtResource( 5 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 800, 1120 )
@@ -82,3 +80,14 @@ shape = SubResource( 2 )
 [node name="Nest_Right" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1440, 420 )
 scale = Vector2( -1, 1 )
+player = 2
+
+[node name="GameManager" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[editable path="Birb_Player_2"]
