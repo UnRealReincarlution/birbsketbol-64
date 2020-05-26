@@ -135,5 +135,8 @@ margin_bottom = 1256.0
 theme = SubResource( 6 )
 text = "made for birb gamejam by KFC"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="Birb_Player_2"]
