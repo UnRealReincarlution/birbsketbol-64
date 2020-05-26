@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://birb_house.png" type="Texture" id=1]
+[ext_resource path="res://birb_bol.png" type="Texture" id=2]
+[ext_resource path="res://nest.png" type="Texture" id=3]
+[ext_resource path="res://birb_player_1.png" type="Texture" id=4]
+[ext_resource path="res://Player.gd" type="Script" id=5]
+
+[sub_resource type="PhysicsMaterial" id=3]
+bounce = 0.9
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 60.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 800, 8 )
+
+[node name="World" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Birb_Ball" type="RigidBody2D" parent="."]
+position = Vector2( 807.875, 679.862 )
+physics_material_override = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Birb_Ball"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Birb_Ball"]
+shape = SubResource( 1 )
+
+[node name="Birb_Player_1" type="RigidBody2D" parent="."]
+position = Vector2( 304, 920 )
+physics_material_override = SubResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Birb_Player_1"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Birb_Player_1"]
+shape = SubResource( 1 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 800, 1120 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource( 2 )
+
+[node name="Wall_Left" type="StaticBody2D" parent="."]
+position = Vector2( 8, 312 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Left"]
+shape = SubResource( 2 )
+
+[node name="Wall_Right" type="StaticBody2D" parent="."]
+position = Vector2( 1592, 312 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Right"]
+shape = SubResource( 2 )
+
+[node name="nest" type="Sprite" parent="."]
+position = Vector2( 160, 420 )
+texture = ExtResource( 3 )
