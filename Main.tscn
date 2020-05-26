@@ -56,6 +56,12 @@ position = Vector2( 800, 1120 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource( 2 )
 
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2( 800, -496 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource( 2 )
+
 [node name="Wall_Left" type="StaticBody2D" parent="."]
 position = Vector2( 8, 312 )
 rotation = 1.5708
