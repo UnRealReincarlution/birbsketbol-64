@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://birb_house.png" type="Texture" id=1]
 [ext_resource path="res://birb_bol.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Birb_Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://birb_player_2.png" type="Texture" id=5]
 [ext_resource path="res://GameManager.gd" type="Script" id=6]
+[ext_resource path="res://walter_turncoat_regular.tres" type="DynamicFont" id=7]
+[ext_resource path="res://WalterTurncoat-Regular.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="PhysicsMaterial" id=3]
 bounce = 0.9
@@ -15,6 +17,16 @@ radius = 60.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 800, 8 )
+
+[sub_resource type="Theme" id=4]
+default_font = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
 
 [node name="World" type="Node2D"]
 
@@ -26,7 +38,7 @@ centered = false
 [node name="Birb_Ball" type="RigidBody2D" parent="." groups=[
 "ball",
 ]]
-position = Vector2( 807.875, 679.862 )
+position = Vector2( 808, 512 )
 physics_material_override = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -40,10 +52,10 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Birb_Player_1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 320, 920 )
+position = Vector2( 320, 768 )
 
 [node name="Birb_Player_2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1280, 920 )
+position = Vector2( 1280, 768 )
 control = 2
 
 [node name="Sprite" parent="Birb_Player_2" index="0"]
@@ -83,11 +95,45 @@ scale = Vector2( -1, 1 )
 player = 2
 
 [node name="GameManager" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1600.0
+margin_bottom = 1200.0
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Player_1_Score" type="Label" parent="GameManager"]
+margin_left = 128.0
+margin_top = 32.0
+margin_right = 221.0
+margin_bottom = 208.0
+theme = SubResource( 4 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player_2_Score" type="Label" parent="GameManager"]
+margin_left = 1408.0
+margin_top = 32.0
+margin_right = 1501.0
+margin_bottom = 208.0
+theme = SubResource( 4 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Author" type="Label" parent="GameManager"]
+margin_top = 1016.0
+margin_right = 1600.0
+margin_bottom = 1256.0
+theme = SubResource( 6 )
+text = "made for birb gamejam by KFC"
+align = 1
 
 [editable path="Birb_Player_2"]

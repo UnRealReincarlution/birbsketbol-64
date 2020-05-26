@@ -13,5 +13,8 @@ func on_goal_scored(player):
 			score_player_2 += 1
 		2:
 			score_player_1 += 1
-	print("Player 1 score: ", score_player_1)
-	print("Player 2 score: ", score_player_2)
+	update_score_display()
+
+func update_score_display():
+	$Player_1_Score.text = str(score_player_1)
+	$Player_2_Score.text = str(score_player_2)
