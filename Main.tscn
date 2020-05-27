@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://birb_house.png" type="Texture" id=1]
 [ext_resource path="res://birb_bol.png" type="Texture" id=2]
@@ -8,14 +8,16 @@
 [ext_resource path="res://GameManager.gd" type="Script" id=6]
 [ext_resource path="res://walter_turncoat_regular.tres" type="DynamicFont" id=7]
 [ext_resource path="res://WalterTurncoat-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://shadow.png" type="Texture" id=9]
+[ext_resource path="res://Shadow.gd" type="Script" id=10]
 
-[sub_resource type="PhysicsMaterial" id=3]
+[sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.9
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 60.0
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 800, 8 )
 
 [sub_resource type="Theme" id=4]
@@ -28,6 +30,9 @@ font_data = ExtResource( 8 )
 [sub_resource type="Theme" id=6]
 default_font = SubResource( 5 )
 
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 3
+
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite" parent="."]
@@ -39,7 +44,7 @@ centered = false
 "ball",
 ]]
 position = Vector2( 808, 512 )
-physics_material_override = SubResource( 3 )
+physics_material_override = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -49,7 +54,7 @@ scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Birb_Ball"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Birb_Player_1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 320, 768 )
@@ -65,27 +70,27 @@ texture = ExtResource( 5 )
 position = Vector2( 800, 1120 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
 position = Vector2( 800, -496 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wall_Left" type="StaticBody2D" parent="."]
 position = Vector2( 8, 312 )
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Left"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wall_Right" type="StaticBody2D" parent="."]
 position = Vector2( 1592, 312 )
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Right"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Nest_Left" parent="." instance=ExtResource( 3 )]
 
@@ -138,5 +143,32 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Shadow_Player_1" type="Sprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( 320, 1112 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -2
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
+target_path = NodePath("../Birb_Player_1")
+
+[node name="Shadow_Player_2" type="Sprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( 1280, 1112 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -2
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
+target_path = NodePath("../Birb_Player_2")
+
+[node name="Shadow_Ball" type="Sprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( 810, 1112 )
+scale = Vector2( 0.2, 0.2 )
+z_index = -2
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
+target_path = NodePath("../Birb_Ball")
 
 [editable path="Birb_Player_2"]
