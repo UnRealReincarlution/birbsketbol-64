@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://birb_house.png" type="Texture" id=1]
 [ext_resource path="res://birb_bol.png" type="Texture" id=2]
@@ -7,9 +7,12 @@
 [ext_resource path="res://birb_player_2.png" type="Texture" id=5]
 [ext_resource path="res://GameManager.gd" type="Script" id=6]
 [ext_resource path="res://walter_turncoat_regular.tres" type="DynamicFont" id=7]
-[ext_resource path="res://WalterTurncoat-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Guide.gd" type="Script" id=8]
 [ext_resource path="res://shadow.png" type="Texture" id=9]
 [ext_resource path="res://Shadow.gd" type="Script" id=10]
+[ext_resource path="res://arrow.png" type="Texture" id=11]
+[ext_resource path="res://keyboard_wasd.png" type="Texture" id=12]
+[ext_resource path="res://keyboard_uldr.png" type="Texture" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.9
@@ -22,13 +25,6 @@ extents = Vector2( 800, 8 )
 
 [sub_resource type="Theme" id=4]
 default_font = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 8 )
-
-[sub_resource type="Theme" id=6]
-default_font = SubResource( 5 )
 
 [sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 3
@@ -134,17 +130,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Author" type="Label" parent="GameManager"]
-margin_top = 1016.0
-margin_right = 1600.0
-margin_bottom = 1256.0
-theme = SubResource( 6 )
-text = "made for birb gamejam by KFC"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Shadow_Player_1" type="Sprite" parent="."]
 material = SubResource( 7 )
 position = Vector2( 320, 1112 )
@@ -171,5 +156,30 @@ z_index = -2
 texture = ExtResource( 9 )
 script = ExtResource( 10 )
 target_path = NodePath("../../Main/Birb_Ball")
+
+[node name="Guide" type="Node2D" parent="."]
+z_index = 3
+script = ExtResource( 8 )
+
+[node name="Arrow_Left" type="Sprite" parent="Guide"]
+position = Vector2( 160, 288 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 11 )
+
+[node name="Arrow_Right" type="Sprite" parent="Guide"]
+position = Vector2( 1448, 288 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 11 )
+flip_h = true
+
+[node name="WASD" type="Sprite" parent="Guide"]
+position = Vector2( 304, 1000 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
+
+[node name="ULDR" type="Sprite" parent="Guide"]
+position = Vector2( 1280, 1000 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 13 )
 
 [editable path="Birb_Player_2"]
