@@ -10,7 +10,6 @@ bounce = 0.9
 radius = 60.0
 
 [node name="Birb_Player" type="RigidBody2D"]
-position = Vector2( 304, 920 )
 physics_material_override = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
