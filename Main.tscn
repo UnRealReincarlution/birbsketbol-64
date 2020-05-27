@@ -33,7 +33,7 @@ default_font = SubResource( 5 )
 [sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 3
 
-[node name="World" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Background" type="Sprite" parent="."]
 z_index = -5
@@ -44,6 +44,7 @@ centered = false
 "ball",
 ]]
 position = Vector2( 808, 512 )
+mass = 0.5
 physics_material_override = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -151,7 +152,7 @@ scale = Vector2( 0.2, 0.2 )
 z_index = -2
 texture = ExtResource( 9 )
 script = ExtResource( 10 )
-target_path = NodePath("../Birb_Player_1")
+target_path = NodePath("../../Main/Birb_Player_1")
 
 [node name="Shadow_Player_2" type="Sprite" parent="."]
 material = SubResource( 7 )
@@ -160,7 +161,7 @@ scale = Vector2( 0.2, 0.2 )
 z_index = -2
 texture = ExtResource( 9 )
 script = ExtResource( 10 )
-target_path = NodePath("../Birb_Player_2")
+target_path = NodePath("../../Main/Birb_Player_2")
 
 [node name="Shadow_Ball" type="Sprite" parent="."]
 material = SubResource( 7 )
@@ -169,6 +170,6 @@ scale = Vector2( 0.2, 0.2 )
 z_index = -2
 texture = ExtResource( 9 )
 script = ExtResource( 10 )
-target_path = NodePath("../Birb_Ball")
+target_path = NodePath("../../Main/Birb_Ball")
 
 [editable path="Birb_Player_2"]
