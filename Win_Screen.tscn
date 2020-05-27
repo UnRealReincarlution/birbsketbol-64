@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://win_screen.png" type="Texture" id=1]
 [ext_resource path="res://Win_Screen.gd" type="Script" id=2]
 [ext_resource path="res://birb_player_1.png" type="Texture" id=3]
 [ext_resource path="res://birb_player_2.png" type="Texture" id=4]
+[ext_resource path="res://tear_drop.png" type="Texture" id=5]
 
 [node name="Win_Screen" type="Node2D"]
 script = ExtResource( 2 )
@@ -16,7 +17,23 @@ texture = ExtResource( 3 )
 position = Vector2( 808, 624 )
 texture = ExtResource( 4 )
 
+[node name="Player_1_Cry" type="Sprite" parent="."]
+position = Vector2( 1488, 1120 )
+rotation = 0.180856
+scale = Vector2( 0.569299, 0.569299 )
+texture = ExtResource( 3 )
+
+[node name="Player_2_Cry" type="Sprite" parent="."]
+position = Vector2( 1488, 1120 )
+rotation = 0.180856
+scale = Vector2( 0.569299, 0.569299 )
+texture = ExtResource( 4 )
+
 [node name="Background" type="Sprite" parent="."]
 z_index = -2
 texture = ExtResource( 1 )
 centered = false
+
+[node name="tear_drop" type="Sprite" parent="."]
+position = Vector2( 1440, 1032 )
+texture = ExtResource( 5 )
